@@ -44,7 +44,18 @@ export default {
     PostCard
   },
   metaInfo: {
-    title: 'Home'
+    title: 'Home',
+    meta: [
+      { name: "author", content: "Chuck Smith" },
+      { name: "description", content: "This is the personal tech blog of Chuck Smith" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:description", content: "This is the personal tech blog of Chuck Smith" },
+      { name: "twitter:title", content: "Eclectic Saddlebag" },
+      { name: "twitter:site", content: "@EclecticCoding" },
+      // TODO I need a default twitter image
+      { name: "twitter:image", content: ''},
+      { name: "twitter:creator", content: "@EclecticCoding" }
+    ]
   }
 }
 </script>

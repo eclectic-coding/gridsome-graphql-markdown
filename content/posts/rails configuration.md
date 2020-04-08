@@ -1,47 +1,73 @@
 ---
-title: GIT Cache Helpers
-date: 2019-12-09
+title: Rails Configuration
+date: 2020-04-08
 published: true
-tags: ['GIT', 'Security']
-series: 'GIT Authentication'
-cover_image: ./images/git-security.jpg
+tags: ['Ruby', 'Rails', 'TIL']
+series: false
+cover_image: ./images/rails-configuration.jpg
 canonical_url: false
-description: This is a second article in a series called "Git Authentication*" . In the previous article, I shared how I troubleshooted an authentication error, while working on lab assignments for Flatiron School.
+description: Add stuff here.
 ---
-This is a followup article in a series called [Git Authentication](https://dev.to/eclecticcoding/git-authentication-errors-109a). In the previous article, I shared how I troubleshooted an authentication error, while working on lab assignments for Flatiron School.
+So this article you can file away as what I learned today [#TIL](https://twitter.com/hashtag/TIL?src=hashtag_click). This surprised me so much I am writing to share. Thisd is written specifically about [Ruby on Rails]() and the initial set up.
 
-**DISCLAIMER**: *This solution works for my system. I have a single user system not connected to a work network, just a home office. Please investigate the best solution for you and your own security.*
+## Details
+When ever I start a new project with a CLI generate, I spend several minutes setting the environment up like I like it to begin developing, and I imagine any developer does ths same.
 
-## Options
-There are several options Git provides for credentials with the HTTPS protocol. In am escalating order of options:
-- Cache credentials helper - [GIT Authentication Errors](https://dev.to/eclecticcoding/git-authentication-errors-109a)
-- Store credentials helper
-- Local OS keyring helpers - this articles purpose
+For instance, when I start a React project using Create React App, it is always the same:
+- Make `src/components` directory
+- Copy over my dotfiles for the Eslint and prettier configuration I prefer.
+- Copy my `renovatebot.json` configuration file
+- Delete CSS Modules, install `sass`, and copy my Sass 7-in-1 boilerplate.
 
-### Caching credentials
-This is an option I dismissed very quickly, as I was looking for a viable option for my single user computer. To be fair, I do need to introduce this feature as another options
+This was so annoying I created my own React Boilerplate to stream line this process. I will write about this very soon.
 
-**Details**
-The good news is that caching is quite secure because it keeps data only in memory. Just remember, every time you open new session, you need to type your credentials again. Memory is purged after 900 seconds (15 min) by default, but it can be changed with optional timeout parameter.
-```shell
-git config --global credential.helper 'cache --timeout=300'
+### Ruby on Rails
+I started using [Ruby on Rails]() at [Flatiron School]() as a standalone and backend API. I have developed a methodology and found myself setting the environment up on this platform as well.
+
+Today I read an article by Samuel Mullen [Configuring New Rails Projects](https://samuelmullen.com/articles/configuring_new_rails_projects_with_railsrc_and_templates/) and learned you can set up `.railsrc` and template files to streamline setup. I have researched some more and have developed a work in progress configuration for myself.
+
+To get started make sure, in your user account route, create a dotfile: `.railsrc`.
+
+### Database
+When I first started using Rails, I used a [SQlite3]() database which Rails defaults. It was easy to setup and use, but after a few challenging deploys to [Heroku](), which supports [Postgres](), I migrated to Postgres on all of my projects. So, the first switch I added to the `railsrc` file was the toggle for the Postgres DB (see below). Second I added a template file which I will detail below:
+
+```bash
+--database=postgresql
+--template=/home/webrev/development/my-docs/rails-template.rb
 ```
 
-Read more from the [Official Documentation](https://git-scm.com/docs/git-credential-cache)
+## Template
+Let us go over some of these settings numbered below:
+1. I am installing a few gem and then run bundle install.
+2. Set the generator to not install stylesheets when resources are generated because I will use a SCSS Boilerplate.
+3. Create the Postgres DB's so I do not have to after I open the project.
+4. Initialize a repo and make the Initial commit. This step is not perfect. It does as expected, but as the installation continues, not all of the changes are committed. I am still working on this step.
 
- ### More Secure Steps
-After setting up a Credential Store, I became increasingly more uncomfortable with this method. Even though I use a single use computer, it is basically a plain text method. Therefore, it does not matter if you have a 32 character password with uppercase and special characters, it is still plain text.
+```ruby
+#add guard-minitest and spring to dev - 1
+gem_group :development do
+  gem 'guard-minitest'
+end
 
-**Details**
-The directions here are based on a Ubuntu 19.10 system. There are other options for Mac and [Windows](https://github.com/Microsoft/Git-Credential-Manager-for-Mac-and-Linux). The basic idea is to use your Operating System's secure keyring.
+gem_group :test do
+  gem 'minitest-rails-capybara'
+end
 
-Five years ago, the best way to store Git credentials on Linux was to use the GNOME Keyring (libgnome-keyring), but as it is specific to GNOME, it is deprecated since [January 2014](https://mail.gnome.org/archives/commits-list/2014-January/msg01585.html). For Git versions 2.11+ you should use credential helper based on [libsecret](https://wiki.gnome.org/Projects/Libsecret). Installation and configuration takes only four bash commands:
+run "bundle install"
 
-```shell
-sudo apt-get install libsecret-1-0 libsecret-1-dev
-cd /usr/share/doc/git/contrib/credential/libsecret
-sudo make
-git config --global credential.helper /usr/share/doc/git/contrib/credential/libsecret/git-credential-libsecret
+#config generator defaults - 2
+environment "config.generators do |g| \n g.stylesheets false \n end"
+
+#create postgres DB for postgress.app - 3
+run "psql -c 'CREATE DATABASE #{app_path}_development;'"
+run "psql -c 'CREATE DATABASE #{app_path}_test;'"
+
+#Initialize local Git repository and Initial Commit - 4
+git :init
+git add: "."
+git commit: "-m 'Initial commit'"
 ```
-All done! ✅
-The next time you use git you’ll be asked for your username and password will be the last time on your device
+To create a new project:
+`rails new my-rails-project`
+
+That is it... it creates my DB's, with no self typed command line switches. MAGIC. Well I can do some much more than just this but it is a start.
