@@ -6,7 +6,7 @@ tags: ['Ruby', 'Rails', 'TIL']
 series: false
 cover_image: ./images/rails-configuration.jpg
 canonical_url: false
-description: Learn about my jhoruney, learning how to set up a configuration file to streamline creating new Rails project.
+description: Learn about my journey, learning how to set up a configuration file to streamline creating new Rails project.
 ---
 So this article you can file away as what I learned today [#TIL](https://twitter.com/hashtag/TIL?src=hashtag_click). This surprised me so much I am writing to share. Thisd is written specifically about [Ruby on Rails]() and the initial set up.
 
