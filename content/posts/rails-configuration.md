@@ -8,10 +8,10 @@ cover_image: ./images/rails-configuration.jpg
 canonical_url: false
 description: Learn about my journey, learning how to set up a configuration file to streamline creating new Rails project.
 ---
-So this article you can file away as what I learned today [#TIL](https://twitter.com/hashtag/TIL?src=hashtag_click). This surprised me so much I am writing to share. Thisd is written specifically about [Ruby on Rails]() and the initial set up.
+So this article you can file away as what I learned today [#TIL](https://twitter.com/hashtag/TIL?src=hashtag_click). This surprised me so much I am writing to share. This is written specifically about [Ruby on Rails](https://rubyonrails.org/) and the initial set up.
 
 ## Details
-When ever I start a new project with a CLI generate, I spend several minutes setting the environment up like I like it to begin developing, and I imagine any developer does ths same.
+When ever I start a new project with a CLI generate, I spend several minutes setting the environment up like I like it to begin developing, and I imagine any developer does the same.
 
 For instance, when I start a React project using Create React App, it is always the same:
 - Make `src/components` directory
@@ -22,14 +22,14 @@ For instance, when I start a React project using Create React App, it is always 
 This was so annoying I created my own React Boilerplate to stream line this process. I will write about this very soon.
 
 ### Ruby on Rails
-I started using [Ruby on Rails]() at [Flatiron School]() as a standalone and backend API. I have developed a methodology and found myself setting the environment up on this platform as well.
+I started using [Ruby on Rails](https://rubyonrails.org) at [Flatiron School](https://flatironschool.com/) as a standalone and backend API. I have developed a methodology and found myself setting the environment up on this platform as well.
 
 Today I read an article by Samuel Mullen [Configuring New Rails Projects](https://samuelmullen.com/articles/configuring_new_rails_projects_with_railsrc_and_templates/) and learned you can set up `.railsrc` and template files to streamline setup. I have researched some more and have developed a work in progress configuration for myself.
 
 To get started make sure, in your user account route, create a dotfile: `.railsrc`.
 
 ### Database
-When I first started using Rails, I used a [SQlite3]() database which Rails defaults. It was easy to setup and use, but after a few challenging deploys to [Heroku](), which supports [Postgres](), I migrated to Postgres on all of my projects. So, the first switch I added to the `railsrc` file was the toggle for the Postgres DB (see below). Second I added a template file which I will detail below:
+When I first started using Rails, I used a [SQlite3](https://www.sqlite.org/index.html) database which Rails defaults. It was easy to setup and use, but after a few challenging deploys to [Heroku](https://www.heroku.com/), which supports [Postgres](https://www.postgresql.org/), I migrated to Postgres on all of my projects. So, the first switch I added to the `railsrc` file was the toggle for the Postgres DB (see below). Second I added a template file which I will detail below:
 
 ```bash
 --database=postgresql
