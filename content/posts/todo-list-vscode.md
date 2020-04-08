@@ -4,7 +4,7 @@ date: 2019-08-14
 published: true
 tags: ['VSCode','Productivity']
 series: false
-cover_image: checklist.jpg
+cover_image: ./images/checklist.jpg
 canonical_url: false
 description: This article addresses a document level TODO list as your are coding and developing an application.
 ---
