@@ -1,7 +1,7 @@
 ---
 title: Passionate Journey
 date: 2020-04-08
-published: true
+published: false
 cover_image: ./images/passion-led-us-here.jpg
 tags: ['webdev','Coding']
 series: false
