@@ -5,7 +5,7 @@
              blur="5" />
 
 		<h1 v-if="showTitle" class="author__site-title">
-			{{ $static.metadata.siteName }}
+			<g-link to="/" class="author__site-title">{{ $static.metadata.siteName }}</g-link>
 		</h1>
 
 		<p class="author__intro">
@@ -55,7 +55,13 @@ export default {
 	}
 
 	&__site-title {
-		font-size: 1.5em;
+		/*font-size: 1.5em;*/
+    text-decoration: none;
+    color: var(--title-color);
+
+    &:visited {
+      color: white;
+    }
 	}
 
 	&__links {
