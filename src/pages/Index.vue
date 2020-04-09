@@ -13,8 +13,10 @@
 </template>
 // TODO add pagination
 <page-query>
-  query ($page: Int) { posts: allPost(perPage: 3, page: $page, filter: { published: { eq: true }}) @paginate {
-  totalCount pageInfo { totalPages currentPage isFirst isLast } edges { node { id title date (format: "MMM DD, YYYY")
+  query ($page: Int) {
+  posts: allPost(perPage: 5, page: $page, filter: { published: { eq: true }}) @paginate {
+    totalCount
+    pageInfo { totalPages currentPage isFirst isLast } edges { node { id title date (format: "MMM DD, YYYY")
   timeToRead description cover_image (width: 770, height: 380, blur: 10) path tags { id title path } } } } }
 </page-query>
 
