@@ -5,14 +5,14 @@ published: true
 tags: ['Gridsome', 'Coding']
 series: false
 cover_image: ./images/pagination.jpg
-canonical_rul: false
+canonical_rule: false
 description: When ever I set up a blog, there are a few features which are must haves, linkable taxonomy (i.e. tags or categories) and pagination. No one wants an eternal page. These tasks can be challenging but it is super easy in Gridsome.
 ---
 
 When ever I set up a blog, there are a few features which are must haves, linkable taxonomy (i.e. tags or categories) and pagination. No one wants an eternal page. These tasks can be challenging but it is super easy in Gridsome.
 
 ## What is Gridsome
-[Gridsome]() is the [Gatsby]() alternative for [Vue.js]() that aims to provide the tech stack to build blazing fast statically generated websites. It’s data-driven, using a GraphQL layer to get data from different sources in order to dynamically generate pages from it. Adding pagination to this blog was the easiest implementation I have experienced. It requires basically three separate parts.
+[Gridsome](https://gridsome.org/) is the [Gatsby](https://www.gatsbyjs.org/) alternative for [Vue.js]() that aims to provide the tech stack to build blazing fast statically generated websites. It’s data-driven, using a GraphQL layer to get data from different sources in order to dynamically generate pages from it. <sup id="a1">[1](#f1)</sup> Adding pagination to this blog was the easiest implementation I have experienced. It requires basically three separate parts.
 - GraphQL
 - New Component
 - Add CSS Styling
