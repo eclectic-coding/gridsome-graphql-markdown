@@ -11,7 +11,7 @@
 
   </Layout>
 </template>
-// TODO add pagination
+
 <page-query>
   query ($page: Int) {
   posts: allPost(perPage: 5, page: $page, filter: { published: { eq: true }}) @paginate {

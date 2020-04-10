@@ -5,7 +5,7 @@
              blur="5" />
 
 		<h1 v-if="showTitle" class="author__site-title">
-			<g-link to="/" class="author__site-title">{{ $static.metadata.siteName }}</g-link>
+			{{ $static.metadata.siteName }}
 		</h1>
 
 		<p class="author__intro">
