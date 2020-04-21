@@ -1,5 +1,15 @@
 {
   "name": "my-gridsome-blog",
+  "version": "1.0.0",
+  "description": "My blog site of my tech journey",
+  "author": {
+    "name": "Chuck Smith",
+    "email": "chuck@eclecticsaddlebag.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eclectic-coding/gridsome-graphql-markdown.git"
+  },
   "private": true,
   "scripts": {
     "build": "gridsome build",
