@@ -8,7 +8,6 @@
       <PostCard v-for="edge in $page.posts.edges" :key="edge.node.id" :post="edge.node" />
     </div>
     <Pager :info="$page.posts.pageInfo" linkClass="pager__link" class="pager" />
-
   </Layout>
 </template>
 
@@ -56,9 +55,15 @@
       title: 'Home',
       meta: [
         { name: 'author', content: 'Chuck Smith' },
-        { name: 'description', content: 'This is the personal tech blog of Chuck Smith' },
+        {
+          name: 'description',
+          content: 'This is the personal tech blog of Chuck Smith'
+        },
         { name: 'twitter:card', content: 'summary_large_image' },
-        { name: 'twitter:description', content: 'This is the personal tech blog of Chuck Smith' },
+        {
+          name: 'twitter:description',
+          content: 'This is the personal tech blog of Chuck Smith'
+        },
         { name: 'twitter:title', content: 'Eclectic Saddlebag' },
         { name: 'twitter:site', content: '@EclecticCoding' },
         // TODO I need a default twitter image
@@ -79,7 +84,7 @@
       color: var(--link-color);
       text-align: center;
       text-decoration: none;
-      padding: .5rem 1rem;
+      padding: 0.5rem 1rem;
 
       &:hover:not(.active) {
         background-color: var(--bg-content-color);
@@ -93,5 +98,4 @@
     background-color: var(--bg-content-color);
     border-radius: 5px;
   }
-
 </style>
