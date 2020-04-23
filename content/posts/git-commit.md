@@ -21,7 +21,7 @@ I will cover a few basics below, but it you are not familiar with the Git Workfl
 - This a descent interactive [Tutorial][TUTORIAL] by GitHub
 
 ## Where?
-I am asked many times by new developers: "Where do you contribute?" I can easily answer this with another question: "What software packages do you use?" I am not trying to be cavalier, but it can be that simeple. Let me share an example for my own journey.
+I am asked many times by new developers: "Where do you contribute?" I can easily answer this with another question: "What software packages do you use?" I am not trying to be cavalier, but it can be that simple. Let me share an example for my own journey.
 
 When I first started learning React, I used Bootstrap for styling so I could focus on learning React. I had used Bootstrap enough to recognize that the documentation in [Create React App's][CRA] documentation was incomplete. So I submitted a pull request.
 
@@ -42,7 +42,7 @@ The basics are as follows:
 
 These are only the basics. The GitHub tutorial mentioned above is a good interactive example to get you use to the process. Also, I use a CONTRIBTUING document on most of my repositories which I downloaded from the first project I contributed. I continue to develop this document but fork this Gist as a reference and learn: [Sample CONTRIBUTING.md][CONTRIBUTING].
 
-Who do you contribute? Just get started.
+How do you contribute? Just get started.
 
 [GIT]: https://git-scm.com/
 [GITHUB]: https://github.com
