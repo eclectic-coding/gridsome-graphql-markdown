@@ -123,12 +123,15 @@ query Post ($id: ID!) {
         color: var(--title-color);
       }
 
+      p + img + em {
+        font-size: 12px;
+      }
+
       img {
-        /*width: calc(100% + var(--space) * 2);*/
-        /*margin-left: calc(var(--space) * -1);*/
+        width: calc(100% + var(--space) * 2);
+        margin-left: calc(var(--space) * -1);
         margin: 0 auto;
         display: block;
-        max-width: none;
       }
     }
   }

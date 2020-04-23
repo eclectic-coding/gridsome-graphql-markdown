@@ -8,7 +8,7 @@
 If you have never opened a PR and need direction, read more below.
 
 # Contributor's Guide
-Feedback, bug reports, and pull requests are welcome. Feel free to ask for [help](https://github.com/eclectic-coding/this-repo/issues).
+Feedback, bug reports, and pull requests are welcome. Feel free to ask for [help](https://github.com/eclectic-coding/gridsome-graphql-markdown/issues).
 
 Working on your first Pull Request? You can learn how from this _free_ series [How to Contribute to an Open Source Project on GitHub](https://egghead.io/series/how-to-contribute-to-an-open-source-project-on-github)
 
@@ -23,17 +23,17 @@ This guide has been modified from [freeCodeCamp's Contributors Guide](https://gi
 
 ### Forking Developer Portfolios
 
-1.  Go to the top level page of this [repository](https://github.com/eclectic-coding/this-repo)
+1.  Go to the top level page of this [repository](https://github.com/eclectic-coding/gridsome-graphql-markdown)
 2.  Click the "Fork" Button in the upper right hand corner of the interface ([More Details Here](https://help.github.com/articles/fork-a-repo/))
-3.  After the repository (repo) has been forked, you will be taken to your copy of the Developer Portfolios repo at <https://github.com/yourUsername/this-repo>
+3.  After the repository (repo) has been forked, you will be taken to your copy of the Developer Portfolios repo at <https://github.com/yourUsername/gridsome-graphql-markdown>
 
 ### Cloning Your Fork
 
 1.  Open a Terminal / Command Line / Bash Shell in your project's directory (_i.e.: `/yourprojectdirectory/`_)
-2.  Clone your fork of 
+2.  Clone your fork of
 
 ```shell
-$ git clone https://github.com/yourUsername/this-repo.git
+$ git clone https://github.com/yourUsername/gridsome-graphql-markdown.git
 ```
 
 **(make sure to replace `yourUsername` with your GitHub username)**
@@ -42,11 +42,11 @@ This will download the entire repo to your project's directory.
 
 ### Setup Your Upstream
 
-1.  Change directory to the new directory (`cd ./this-repo`)
+1.  Change directory to the new directory (`cd ./gridsome-graphql-markdown`)
 2.  Add a remote to the original  repo:
 
 ```shell
-$ git remote add upstream https://github.com/eclectic-coding/this-repo.git
+$ git remote add upstream https://github.com/eclectic-coding/gridsome-graphql-markdown.git
 ```
 
 Congratulations, you now have a local copy of the  repo!
@@ -123,7 +123,7 @@ A pull request (PR) is a method of submitting your new site to the  (or any repo
 
 #### Need Help?
 
-Feel free to ask for [help](https://github.com/eclectic-coding/this-repo/issues), we are here to help.
+Feel free to ask for [help](https://github.com/eclectic-coding/gridsome-graphql-markdown/issues), we are here to help.
 
 #### Important: ALWAYS EDIT ON A BRANCH
 
