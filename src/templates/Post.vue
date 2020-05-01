@@ -45,7 +45,7 @@
       return {
         title: this.$page.post.title,
         meta: [
-          { name: 'twitter:card', content: 'summary_large_image' },
+          { name: 'twitter:card', content: this.$page.post.cover_image },
           { name: 'twitter:description', content: this.$page.post.description },
           { name: 'twitter:title', content: this.$page.post.title },
           { name: 'twitter:site', content: '@EclecticCoding' },
