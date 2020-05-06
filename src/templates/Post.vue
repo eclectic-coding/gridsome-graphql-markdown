@@ -50,7 +50,7 @@
           { name: 'twitter:description', content: this.$page.post.description },
           { name: 'twitter:title', content: this.$page.post.title },
           { name: 'twitter:site', content: '@EclecticCoding' },
-          { name: 'twitter:image', content: this.$page.post.cover_image.src },
+          { name: 'twitter:image', content: this.$page.post.cover_image },
           { name: 'twitter:creator', content: '@EclecticCoding' },
 
           { property: 'og:type', content: 'article' },
@@ -60,7 +60,7 @@
           { property: 'article:published_time', content: moment(this.$page.post.date).format('MM-DD-YYYY') },
           { property: 'og:creator', content: '@EclecticCoding' },
           { property: 'og:updated_time', content: this.$page.post.date },
-          { property: 'og:image', content: this.$page.post.cover_image.src },
+          { property: 'og:image', content: this.$page.post.cover_image },
           { property: 'og:image:secure_url', content: this.$page.post.cover_image }
         ],
         script: [{ src: 'https://platform.twitter.com/widgets.js', async: true }]
