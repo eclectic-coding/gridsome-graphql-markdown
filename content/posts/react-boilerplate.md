@@ -13,7 +13,7 @@ Welcome to week two in this article series, "Streamline Workflow." In this week'
 ## Options
 So there are a few approaches we can take:
 
-**Stick with Creat React App** - You can take this approach and reconfigure for your preferences each time. The other variation of this approach is to maintain a modified copy of CRA locally setup the way you like. This could work but remember you will have to maintain and keep the packages updated.
+**Stick with Create React App** - You can take this approach and reconfigure for your preferences each time. The other variation of this approach is to maintain a modified copy of CRA locally setup the way you like. This could work but remember you will have to maintain and keep the packages updated.
 
 **Create a Custom Boilerplate with Webpack** - You can roll you own. I have done this in the past. It exposes the Webpack configuration more than the existing CRA does and allows you to fully customize the environment. If you are interested in this approach [Robin Wieruch](https://www.robinwieruch.de/minimal-react-webpack-babel-setup) wrote a wonderful tutorial series on how to accomplish this boilerplate. This was my original approach and you can look at and use the code on my [Repository](https://github.com/eclectic-coding/react-boilerplate) if this is a direction you wish to try. In the end I decided, this was to complex for the average beginning end user to maintain.
 
