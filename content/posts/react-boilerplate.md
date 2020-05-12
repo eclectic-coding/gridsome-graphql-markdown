@@ -1,5 +1,5 @@
 ---
-title: React Boilerplate
+title: React Boilerplate - Part 1
 date: 2020-05-06
 published: true
 tags: ['react', 'javascript', 'beginners', 'tutorial']
