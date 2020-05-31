@@ -116,7 +116,7 @@ You now have a working pagination, however, it is not styled:
 
 ## Styling Pagination
 
-There a gem's which will style `will_paginate`, For instance, if you use Bootstrap there are a few gem's that can quickly add styling for the pagination, but I have yet to find one for Tailwind CSS. This seems like a good future project ... hmm?
+There are gem's which will style `will_paginate`, for instance, if you use Bootstrap there are a few gem's that can quickly add styling for the pagination, but I have yet to find one for Tailwind CSS. This seems like a good future project ... hmm?
 
 So, we will have to add the styling ourselves and fortunately `will_paginate` does add structured HTML code that already has classes in which we can target.
 
