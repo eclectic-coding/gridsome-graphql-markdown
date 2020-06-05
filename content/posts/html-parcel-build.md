@@ -125,7 +125,7 @@ We need to add a few scripts to our `package.json`:
 ```
 When we run `yarn start` script, parcel creates a `dist/` directory, compiles the `scss`, and JavaScript we have indicated in the `index.html`, and creates bundles in the new `dist directory.
 
-Update the SCSS stylesheet link. In the earlier impementation, we pointed to a compiled stylesheet, but by pointing to a :
+Update the SCSS stylesheet link. In the earlier implementation, we pointed to a compiled stylesheet, but by pointing to a :
 ```html
   <link rel="stylesheet" href="src/styles/main.scss">
 ```
