@@ -16,13 +16,14 @@
 
       <div class="post__content" v-html="$page.post.content" />
 
+      <div class="post-comments">
+        <!-- Add comment widgets here -->
+        <Disqus shortname="eclecticsaddlebag" :identifier="$page.post.title" />
+      </div>
+
       <div class="post__footer">
         <PostTags :post="$page.post" />
       </div>
-    </div>
-
-    <div class="post-comments">
-      <!-- Add comment widgets here -->
     </div>
 
     <Author class="post-author" />
@@ -33,6 +34,7 @@
   import PostMeta from '~/components/PostMeta'
   import PostTags from '~/components/PostTags'
   import Author from '~/components/Author.vue'
+
   import moment from 'moment'
 
   export default {
