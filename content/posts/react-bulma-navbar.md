@@ -1,6 +1,6 @@
 ---
 title: Bulma Navbar Toogle with React Hooks
-date: 2020-0-06
+date: 2020-06-06
 published: true
 tags: ['React', 'Bulma', 'webdev', 'beginner']
 series: false
