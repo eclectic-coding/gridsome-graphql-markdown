@@ -1,7 +1,7 @@
 ---
 title: HTML Boilerplate Part Duex
 date: 2020-06-21
-published: true
+published: false
 tags: ['html', 'javascript', 'beginners', 'tutorials']
 series: false
 cover_image:
