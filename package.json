@@ -21,12 +21,12 @@
     "@gridsome/remark-prismjs": "^0.3.0",
     "@gridsome/source-filesystem": "^0.6.2",
     "@gridsome/transformer-remark": "^0.6.1",
-    "gridsome": "^0.7.18",
+    "gridsome": "^0.7.19",
     "moment": "^2.27.0",
     "vue-disqus": "^4.0.1"
   },
   "devDependencies": {
     "node-sass": "^4.14.1",
-    "sass-loader": "^9.0.1"
+    "sass-loader": "^9.0.2"
   }
 }
