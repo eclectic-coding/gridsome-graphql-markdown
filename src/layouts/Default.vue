@@ -1,14 +1,20 @@
 <template>
   <div id="app">
 
+    <nav>
+      <div class="menu">
+        <button class="menu__links">Home</button>
+        <button class="menu__links">Articles</button>
+        <button class="menu__links">About Me</button>
+      </div>
+      <ToggleTheme />
+    </nav>
+
     <header class="header">
       <div class="header__left">
-        <Logo v-if="showLogo" /> 
+        <Logo v-if="showLogo" />
       </div>
-      
-      <div class="header__right">        
-        <ToggleTheme />
-      </div>
+
     </header>
 
     <main class="main">
@@ -58,6 +64,33 @@ export default {
     //Make header sticky for large screens
     position: sticky;
     width: 100%;
+  }
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: var(--header-height);
+  padding: 0 calc(var(--space) / 2);
+  top:0;
+  z-index: 10;
+}
+
+.menu__links {
+  margin: 0 1rem;
+  background: none;
+  font-size: var(--base-font-size);
+  color: var(--body-color);
+  font-family: var(--base-font-family);
+  border: none;
+
+  &:hover {
+    /*color: var(--bg-menu-hover);*/
+    background-color: var(--bg-menu-hover);
+    padding: 4px 10px;
+    border-radius: 5px;
+
   }
 }
 
