@@ -6,40 +6,67 @@ tags: ['webdev', 'git']
 series: Streamlined Workflow
 cover_image: ./images/git-shortcut.jpg
 canonical_rul: false
-description: Variety redeye roast decaffeinated instant grinder blue mountain. Brewed wings macchiato, eu, milk cup beans saucer fair trade robusta. Turkish robust galão plunger pot aroma mug fair trade. Robust coffee redeye acerbic saucer con panna sweet instant cortado. And affogato arabica ut organic decaffeinated irish.
+description: Continuing this article series about Streamlining Workflow, must include a way to streamline our git commands. This article uses my own aliases and a GIST below for the full list.
 ---
-Instant seasonal grinder to go brewed iced milk qui single shot. Kopi-luwak, at froth dripper robust carajillo organic filter kopi-luwak froth. Eu skinny body, cultivar, cream cup ristretto dark sugar caffeine affogato. Brewed rich blue mountain coffee cortado crema single origin foam whipped. Sit cinnamon blue mountain so crema black, white id eu aroma cultivar.
-
-instant mazagran lungo and chicory cortado variety.
+Continuing this article series about Streamlining Workflow, must include a way to streamline our git commands. This article uses my own aliases and a GIST for the full list.
 
 TLTR: Want to just straight to the code? The complete alias file I use is available in this [GIST](https://gist.github.com/eclectic-coding/7510cf0771cae53f021f938549f027dc).
 
 ## Alias possibilities
-bash/zsh dotfiles
+There are a few ways to add aliases to your system and the natural place to start is by adding them to your terminal configuration. In my case, I have a ton of aliases I have added to my `.zshrc` workflow.
 
-git config file
+However, since these are Git commands I have decided to add them to my `.gitconfig` file. This makes sure my `zshrc` more DRY. To do this add a new section to your `.config` titled `[alias]`. Now, let's begin.
 
 ## My configuration
 I am not going to go over every aliased command in my configuration, just the ones I use most frequently.
 
-**Branches** I have several commands that help with branches.Each command is prefixed with `git`.
+**Branches**
+
+I have several commands that help with branches.Each command is prefixed with `git`.
 
 - So, to checkout an existing branch: `git co name-of-branch`
 - Create a new branch: `git cob name-of-new-branch`
 - Create a new branch: `git br name-of-new-branch`. This alias I have stopped using in favor of `cob` because at creation, `cob` changes to the branch.
+- Change to master branch: `git com`. If you have changed your default branch to `main` or some other name, this will still change to the default branch.
 - Delete a branch: `git brd name-of-new-branch`
 
 **Commits**
+
 So, to check the status: `git st`, which uses the `-sb` switch to trim the CLI to a cleaner output:
 ```shell script
 ## master...origin/master
  M content/posts/git-alias-workflow.md
 ```
 - Add all changed files: `git aa` instead of `git add -A`
-- Commit:
-aa = add -A .
-	cm = commit
-	aacm = !git add -A . && git commit
-	acp = !git add -A . && git commit && git push
+- Commit: `git cm` This will open your editor of choice, or you can `git cm -m "My commit message"`
+- Okay so my most used alias: `git aacm` is an alias for `git add -A && git commit`. Remember you will need to use the `-m` to add a message.
+
+**Remote**
+
+This alias is for a combined push with the remote repository:
+- Combined add, commit, and push: `git acp`, using your editor, or suffix with `-m "Commit message"
+
+Your remote:
+- Push after you have done your commit: `git po`, as a short alias for `git push origin
+- Pull from your remote branch: `git plo` as an alias for `git pull origin`
+
+Working with an upstream
+- Fetch: `git `fm` instead of `git fetch upstream`
+- Merge upstream with main branch: `git mup` as an alis for `git merge upstream/master`
 
 **logs**
+
+I have a few aliases for `git log`
+
+Pretty format, with decorate is `git ls`:
+![](./images/git-ls.png)
+
+Pretty format, with decorate and `--numstat` is `git ll`:
+![](./images/git-ll.png)
+
+These are my basic aliases that I use the most. Again, refer to the [GIST]() for a complete list.
+
+## Footnote
+This has been fun. Leave a comment or send me a DM on [Twitter](http://twitter.com/EclecticCoding).
+
+Shameless Plug: If you work at a great company and you are in the market for a Software Developer with a varied skill set and life experiences, send me a message on [Twitter](http://twitter.com/EclecticCoding) and check out my [LinkedIn](http://www.linkedin.com/in/dev-chuck-smith).
