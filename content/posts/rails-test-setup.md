@@ -4,13 +4,13 @@ date: 2020-08-23
 published: true
 tags: ['rails', 'testing', 'ruby']
 series: false
-cover_image:
+cover_image: ./images/rails-testing.jpg
 canonical_rul: false
-description: Americano cup, crema variety, kopi-luwak, aroma blue mountain ristretto macchiato redeye. Caffeine milk caffeine single origin spoon rich organic shop. Coffee, id, that white café au lait mug grounds. Est single origin cultivar, robust saucer chicory foam ut variety. Latte espresso foam macchiato single origin id single shot fair trade café au lait.
+description: How do you setup a Rails project for testing? In tis article we will explore what a testing suite, using RSpec and other tools, for a robust developers experience.
 ---
-Americano cup, crema variety, kopi-luwak, aroma blue mountain ristretto macchiato redeye. Caffeine milk caffeine single origin spoon rich organic shop. Coffee, id, that white café au lait mug grounds. Est single origin cultivar, robust saucer chicory foam ut variety. Latte espresso foam macchiato single origin id single shot fair trade café au lait.
+How do you setup a Rails project for testing? In tis article we will explore what a testing suite, using RSpec and other tools, for a robust developers experience. This article touches on my approaches to testing tools as I have been focused on learning RSpec.
 
-TLTR: Hey, go grab the [code][REPO]
+TLTR: Hey, just go grab the [code][REPO]
 
 ## Basic project setup.
 First we need to start a rails project. We will use the `-T` switch to exclude testing since we will opt for RSpec over the Rails default of `minitest`. We will also default to Postgres for our database. This is not required, just my preference:
