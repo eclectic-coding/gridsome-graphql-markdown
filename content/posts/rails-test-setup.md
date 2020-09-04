@@ -6,9 +6,9 @@ tags: ['rails', 'testing', 'ruby']
 series: false
 cover_image: ./images/rails-testing.jpg
 canonical_rul: false
-description: How do you setup a Rails project for testing? In tis article we will explore what a testing suite, using RSpec and other tools, for a robust developers experience.
+description: How do you setup a Rails project for testing? In this article we will explore what a testing suite, using RSpec and other tools, for a robust developers experience.
 ---
-How do you setup a Rails project for testing? In tis article we will explore what a testing suite, using RSpec and other tools, for a robust developers experience. This article touches on my approaches to testing tools as I have been focused on learning RSpec.
+How do you setup a Rails project for testing? In this article we will explore what a testing suite, using RSpec and other tools, for a robust developers experience. This article touches on my approaches to testing tools as I have been focused on learning RSpec.
 
 TLTR: Hey, just go grab the [code][REPO]
 
