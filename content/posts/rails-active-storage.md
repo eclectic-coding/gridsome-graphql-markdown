@@ -1,193 +1,236 @@
 ---
-title: Rails DRY Controllers
-date: 2020-09-06
+title: Rails Active Storage
+date: 2020-09-13
 published: true
 tags: ['rails', 'ruby', 'webdev']
 series: false
-cover_image: ./images/rails-dry.jpg
+cover_image: ./images/active-storage.jpg
 canonical_rul: false
-description: In any programming language, it is important to create DRY (Don't Repeat Yourself) code. In this article we will explore three methods of writing Rails CRUD controllers, and use a gem to abstract controllers even more. 
+description: On any web application, the ability to use images are tantamount. In  a Ruby on Rails project, using Active Storage increases the flexibility to use external storage services and to seamlessly create user interaction.
 ---
 
-In any programming language, it is important to create DRY (Don't Repeat Yourself) code. In this article we will explore three methods of writing Rails CRUD controllers, and use a gem to abstract controllers even more. 
+On any web application, the ability to use images are tantamount. In  a Ruby on Rails project, using Active Storage increases the flexibility to use external storage services and to seamlessly create user interaction.
 
-TL;TR:  The completed repository if you would like to jump straight to the [code](https://github.com/eclectic-coding/article_rails_dry).
+In this article we will use Active Storage to allow a user to add an Avatar to their user profile. This Avatar will display on their Profile page and in the User Profile link in the Navbar.
+
+TL;TR:  The completed repository if you would like to jump straight to the [code](https://github.com/eclectic-coding/article_active_storage).
 
 ## Setup
 
-Create a new rails project: `rails new rails_dry --database=postgresql` and run the migrations: `rails db:migrate`.
+This is not a complete tutorial on the setup of our Rails project. Here are the basic features below. I do suggest you look at the repository.
+- Basic Rails project with postgres
+- A controller called `static` for the home page, and the root route specified as `static#home`.
+- Add Bootstrap 4 using Webpacker
+- Add Devise with the additional registration field of username added to the migration
+- Use the gem `devise-bootstrapped` to preconfigure the Devise views with bootstrap styling.
 
-We will create three resources to look at standard CRUD operations :
+Add the following Bootstrap navbar:
+```html
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
+  <div class="container">
+    <%= link_to "Active Storage", root_path, class: "navbar-brand" %>
 
-- Article 
-- Blog
-- Post
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-All three resources work the same and are centered around articles for a Blog type site. There are no user accounts, so this is not an example of a robust application. Instead it is to show three ways to write CRUD controllers. Therefore, we are looking at three resources which are basically identical to each other, just coded a little differently. 
+    <div class="collapse navbar-collapse" id="navbarNav">
 
-Each resource controller is set up with a `before_filter` for the resource, and `strong_params`. For instance with the `Articles` controller:  
+      <ul class="navbar-nav ml-auto">
+
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to current_user.username, user_path(current_user.username), class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Sign out", root_path, class: "nav-link" %>
+          </li>
+        <% else %>
+          <li class="nav-item active">
+            <%= link_to "Log in", root_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Sign up", root_path, class: "nav-link" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>
+```
+
+Create a profile page for the user:
+```html
+<div class="d-flex align-items-center justify-content-center mt-5">
+  <div class="media mr-5 align-self-start">
+    Avatar
+  </div>
+  <div class="media">
+    <div class="media-body">
+      <div class="d-flex flex-row align-items-center justify-content-between">
+        <h1><%= @user.username %></h1>
+        <%= link_to "Edit", edit_user_registration_path, class: "ml-3 btn btn-secondary btn-sm" if current_user.id == @user.id %>
+
+      </div>
+    </div>
+  </div>
+</div>
+```
+Add the route for the profile page: `resources :users, only: [:show], param: :username, path: ""`
+
+Again, this is an overview of the setup, just look at this [commit](https://github.com/eclectic-coding/article_active_storage/tree/dfb6af23e8234c65f0d818a7b66d04ddf0f7fd8e) for the complete [beginning source](https://github.com/eclectic-coding/article_active_storage/tree/dfb6af23e8234c65f0d818a7b66d04ddf0f7fd8e).
+
+## Active Storage
+Active Storage gives us the option to use different storage services. We start by configuring the development environment, by adding the following to `config/environments/development.rb`:
 ```ruby
-class ArticlesController < ApplicationController
-  before_action :set_article, only: %i[show edit update destroy]
-  ...
-    
+# Store files locally.
+config.active_storage.service = :local
+```
+If you want to use Amazon S3 service in production, you add the following to `config/environments/production.rb`:
+```ruby
+# Store files on Amazon S3.
+config.active_storage.service = :amazon
+```
+Refer to the [documentation](https://edgeguides.rubyonrails.org/active_storage_overview.html#setup) for more configuration options in production.
+
+Remember Active Storage is part of Rails, so you just need to install to configure: `rails active_storage:install`, then run the migration: `rails db:migrate`.
+
+Active Storage uses two tables in your application’s database named `active_storage_blobs` and `active_storage_attachments`. The `active_storage_attachments` is a polymorphic join table that stores your model's class name.
+
+In the `Gemfile`, uncomment and `bundle` install `image_processing`. This gem allows us to resize our images. Make sure to restart your rails server.
+
+## Avatar
+
+Add to the User model: `has_one_attached :avatar`:
+```ruby
+class User < ApplicationRecord
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
+
+  has_one_attached :avatar
+end
+```
+
+We need to update the permitted parameter's method in the application controller for the `avatar`:
+
+```ruby
+class ApplicationController < ActionController::Base
+  before_action :configure_permitted_parameters, if: :devise_controller?
+
   private
 
-  # Use callbacks to share common setup or constraints between actions.
-  def set_article
-    @article = Article.find(params[:id])
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:username])
+    devise_parameter_sanitizer.permit(:account_update, keys: %i[avatar name username])
   end
 
-  # Only allow a list of trusted parameters through.
-  def article_params
-    params.require(:article).permit(:title, :content)
-  end
 end
 ```
 
-Also, in each resources, I have added validation to the model (Article example):
+## Edit Profile
 
-```ruby
-class Article < ApplicationRecord
-  validates :title, :content, presence: true
+First, let's update the 'Edit Profile' form, so we can select an Avatar. You will find the template in `app/views/devise/registrations/edit.html.erb`.
 
-end
+We need to add `name`, and `username` to the edit form:
+```html
+<div class="form-group">
+    <%= f.label :username %>
+    <%= f.text_field :username, autofocus: true %>
+  </div>
+
+  <div class="form-group">
+    <%= f.text_field :name, autofocus: true, placeholder: "Name" %>
+  </div>
 ```
+We need to add a place to display the Avatar, and a form picker to select the file. This will be placed at the top of the file. Take a look at the complete [source](https://github.com/eclectic-coding/article_active_storage/blob/main/app/views/devise/registrations/edit.html.erb) for this file:
 
-## Article 
-
-So, I setup a basic controller. This controller represents how I was taught in Bootcamp, and represents a simple way to code a controller.  We will review the create method: 
-
-```ruby
-def new
-    @article = Article.new
-end
-
-def create
-  @article = Article.create(article_params)
-  if @article.save
-    flash[:notice] = "Article was successfully created."
-    redirect_to articles_path
-  else
-    render :new
-  end
-end
+```html
+<div class="row">
+    <div class="col-sm-2">
+      <% if current_user.avatar.nil? %>
+        <%= image_tag f.object.avatar.variant(resize: "128x128!"), class: "rounded-circle m-4" %>
+      <% end %>
+    </div>
+    <div class="col-sm-10">
+      <div class="form-group">
+        <%= f.label :avatar %>
+        <%= f.file_field :avatar %>
+      </div>
+    </div>
+  </div>
 ```
+We are testing if there is an Avatar that is associated with the current user, then displaying the image by using an `image_tag`, resized to 128px, a feature of the `image_processing` gem. We are using the Bootstrap classes to display the avatar as a rounded circle.
 
-In this example, if the article is successfully created, you are redirected to the articles index page. If there is an error, the user is directed to the create page. You can view the [Articles Controller](https://github.com/eclectic-coding/article_rails_dry/blob/main/app/controllers/articles_controller.rb) 
+## User Profile Page
+So, we need to revisit our User `show.html.erb` template file to include the newly selected avatar.
 
-## Blog 
+```html
+<div class="d-flex align-items-center justify-content-center mt-5">
+  <div class="media mr-5 align-self-start">
+    <% if current_user.avatar.nil? %>
+        <%= image_tag f.object.avatar.variant(resize: "128x128!"), class: "rounded-circle m-4" %>
+      <% end %>
+  </div>
+  <div class="media">
+    <div class="media-body">
+      <div class="d-flex flex-row align-items-center justify-content-between">
+        <h1><%= @user.username %></h1>
+        <%= link_to "Edit", edit_user_registration_path, class: "ml-3 btn btn-secondary btn-sm" if current_user.id == @user.id %>
 
-For the Blog resource we will use the rails scaffold generator:
-
-```ruby
-rails g scaffold Blog title content:text
+      </div>
+    </div>
+  </div>
+</div>
 ```
+This is the same code we used for the edit template. This is the result:
 
-Remember to run your migrations: `rails db:migrate`.
+!['Screenshot of User Profile with new Avatar'](images/user-profile.png)
 
-```ruby
-# GET /blogs/new
-def new
-  @blog = Blog.new
-end
+## Navbar
+Originally, I had placeholder paths in the Navbar, so we revisit to make the links workable. Also, we will include the avatar, and a check if one exist.
+```html
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
+  <div class="container">
+    <%= link_to "Active Storage", root_path, class: "navbar-brand" %>
 
-# POST /blogs
-# POST /blogs.json
-def create
-  @blog = Blog.new(blog_params)
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-  respond_to do |format|
-    if @blog.save
-      format.html { redirect_to @blog, notice: 'Blog was successfully created.' }
-      format.json { render :show, status: :created, location: @blog }
-    else
-      format.html { render :new }
-      format.json { render json: @blog.errors, status: :unprocessable_entity }
-    end
-  end
-end
+    <div class="collapse navbar-collapse" id="navbarNav">
+
+      <ul class="navbar-nav ml-auto">
+
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to user_path(current_user.username), class: "nav-link" do %>
+              <% if current_user.avatar.nil? %>
+                <%= image_tag current_user.avatar.variant(resize: "24x24!"), class: "mr-1" %>
+
+              <% end %>
+              <%= current_user.username %>
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "nav-link" %>
+          </li>
+        <% else %>
+          <li class="nav-item active">
+            <%= link_to "Log in", new_user_session_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Sign up", new_user_registration_path, class: "nav-link" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>
 ```
-
-The scaffold generates code using meta programming.  The `respond_to` block  helper method is attached to the Controller class (or rather,  its super class).  It is referencing the response that will be sent to  the View (which is going to the browser). The block shown above is formatting data - by passing in a  'format' parameter in the block - to be sent from the controller to the  view whenever a browser makes a request for html or json data.
-
-Notice the similarities:
-
-- In one line of code, after the successful save, it redirects and sends a message. 
-- The redirect on the error is basically the same as the Article resource. 
-
-**Problems** - Well, not *really* a problem, but is gets verbose in a hurry. However,  the `respond_to` block is somewhat easier to read than the `Articles`. 
-
-You can view the [Blogs Controller](https://github.com/eclectic-coding/article_rails_dry/blob/main/app/controllers/blogs_controller.rb) 
-
-## Post
-
-This resource we are going to take a different approach. As we noted in the Blog resource, the controllers are cleaner, but are quite verbose. We are going to install the [`responders`](https://github.com/plataformatec/responders) gem. This gem adds support for `respond_with` which was removed in Rails 4.2, and allows us to do a lot of cool stuff. Let's setup the `responders` gem:
-
-- Add to your Gemfile: `gem "responder"` and `bundle install`
-- Install responders: `rails g responsers:install`
-- Remember to restart your `rails server`
-
-The gem installation adds the following configuration to the `application_controller`:
-```ruby
-require "application_responder"
-
-class ApplicationController < ActionController::Base
-  self.responder = ApplicationResponder
-  respond_to :html
-
-end
-```
-
-Now generate the `Post` resource using rails scaffold:
-
-```ruby
-rails g scaffold Post title content:text
-```
-
-Remember to run your migrations: `rails db:migrate`.
-
-Notice how much cleaner the controller methods are? We can define the `respond_to` format for the controller under the `before_filter`.  In this case, the generator specified `:html` because it is fined in the `application_controller`. 
-
-```ruby
-class PostsController < ApplicationController
-  before_action :set_post, only: %i[show edit update destroy]
-
-  respond_to :html
-
-  ...
-
-  def new
-    @post = Post.new
-    respond_with(@post)
-  end
-
-
-  def create
-    @post = Post.new(post_params)
-    @post.save
-    respond_with(@post)
-  end
-  
-  ...
-    
-end
-
-```
-
-What if you want the `:json` format in only the index view? It is so simple!
-
-```ruby
-class PostsController < ApplicationController
-  before_action :set_post, only: %i[show edit update destroy]
-
-  respond_to :html
-  respond_to :json, only: :index
-```
-
-The `create` method is three lines of code. After the post is successfully saved it redirects, or throws errors if the validations are not successful. This creates a really DRY controller with a lot of flexibility. 
-
-You can view the [Posts Controller](https://github.com/eclectic-coding/article_rails_dry/blob/main/app/controllers/posts_controller.rb) 
+## Not Perfect
+So, this solution is not entirely practical. I do not like the approach where we are displaying a blank space if the avatar does not exist. In the next article we will build on this feature by using the users [Gravatar](https://en.gravatar.com/) as an optional or fallback image.
 
 ## Footnote
 
