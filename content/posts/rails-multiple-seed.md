@@ -6,10 +6,10 @@ tags: ['rails', 'database', 'webdev']
 series: false
 cover_image: ./images/rails-seeds.jpg
 canonical_rul: false
-description: If you have a larger Rails project, or a project with many resources, managing database seed files can get out of hand. In the name of DRY-ing out code, this articles walks you through how to abstract your seed data into multiple files.
+description: If you have a larger Rails project, or a project with many resources, managing one database seed file can get out of hand. In the name of DRY-ing out code, this article walks you through how to abstract your seed data into multiple files.
 ---
 
-If you have a larger Rails project, or a project with many resources, managing database seed files can get out of hand. In the name of DRY-ing out code, this articles walks you through how to abstract your seed data into multiple files.
+If you have a larger Rails project, or a project with many resources, managing one database seed file can get out of hand. In the name of DRY-ing out code, this article walks you through how to abstract your seed data into multiple files.
 
 So, the approach is to create a new directory: `db/seeds`, and had your seed files in this location. I think the best approach would be to separate your concerns in your seed files. Create multiple seed files to manage easier each resource and place them in this new directory.
 
