@@ -6,7 +6,7 @@ tags: ['rails', 'ruby', 'tutorial']
 series: false 
 cover_image: ./images/rubys.jpg 
 canonical_rul: false 
-description: Often times when developing application, there are times that a developer may need to include logic to conditionally render UI elements. For instance, maybe an active CSS class in the navbar menu-item for the current page. Sometimes the required logic is more complex. In my case I needed to provide a fallback image when an image was not available from the API. In this article I will show the methodology I used to create a Rails Helper to meet this goal.
+description: Often times when developing application, the developer may need to include logic to conditionally render UI elements. For instance, maybe an active CSS class in the navbar menu-item for the current page. Sometimes the required logic is more complex. In my case I needed to provide a fallback image when an image was not available from the API. In this article I will show the methodology I used to create a Rails Helper to meet this goal.
 ---
 Often times when developing application, there are times that a developer may need to include logic to conditionally render UI elements. For instance, maybe an active CSS class in the navbar menu-item for the current page. Sometimes the required logic is more complex. In my case I needed to provide a fallback image when an image was not available from the API. In this article I will show the methodology I used to create a Rails Helper to meet this goal. 
 

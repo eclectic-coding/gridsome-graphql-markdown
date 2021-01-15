@@ -6,16 +6,16 @@ tags: ['rails', 'ruby', 'webdev', 'tutorials']
 series: Streamlined Workflow
 cover_image: ./images/rails.jpg
 canonical_rul: false
-description: So far in this series, we have looked at the benefits of using a Boilerplate to streamline your workflow, and a two articles on how to setup a React Boilerplate with parcel instead of Webpack, and a traditional means to compile and bundle a traditional HTML/SCSS project using Parcel. So, what about Rails?
+description: So far in this series, we have looked at the benefits of using a Boilerplate to streamline your workflow, and a two articles on how to set up a React Boilerplate with Parcel instead of Webpack, and a traditional means to compile and bundle a traditional HTML/SCSS project using Parcel. So, what about Rails?
 ---
-So far in this series, we have looked at the benefits of using a Boilerplate to streamline your workflow, and a two articles on how to setup a React Boilerplate with parcel instead of Webpack, and a traditional means to compile and bundle a traditional HTML/SCSS project using Parcel. So, what about Rails?
+So far in this series, we have looked at the benefits of using a Boilerplate to streamline your workflow, and a two articles on how to set up a React Boilerplate with Parcel instead of Webpack, and a traditional means to compile and bundle a traditional HTML/SCSS project using Parcel. So, what about Rails?
 
 ## Config File
 If you’ve used Unix/Linux for any length of time, you’re familiar with dotfiles. They’re those files beginning with a `.` and usually ending with rc: `.bashrc`, `.vimrc`, and `.zshrc` being familiar examples. Modifying these files allows you to configure the behavior of the associated program, and can be a never ending quest for some to get the “perfect” setup.
 
 You can streamline new Rails project creation with the use of a `.railsrc` file. There are a few rules:
-- The file **must** be named `.railsrc` (don't forget the preceeding `.`
-- The file must be placed in the users path. So, it has to be in your `$HOME` directory.
+- The file **must** be named `.railsrc` (don't forget the preceding `.`)
+- The file must be placed in the users' path. So, it has to be in your `$HOME` directory.
 
 Follow these simple rules, and the `rails new` command will inject commands to the command line silently. For instance, I never use the default Rails database SQlite, I always add the commandline switch to use Postgres. Do I want to type this every time? **NO!!!!!**
 
@@ -23,7 +23,7 @@ So my simple `.railsrc` file:
 ```
 --database=postgresql
 ```
-I can start a new project: `rails new cool_app` and silently the postgresql flag is added to the install process.
+I can start a new project: `rails new cool_app` and silently the postgresql flag is added to the installation process.
 
 What are your defaults? What do you change or use each time? A more involved setup may look like this:
 ```
@@ -41,7 +41,7 @@ The last line of the `.railsrc` file is reserved for template files that will ru
 --database=postgresql
 --template=/path/to/file/rails-template.rb
 ```
-I have stored my simple template file locally, and you can name as you like. Here is my simeple script:
+I have stored my simple template file locally, and you can name as you like. Here is my simple script:
 ```ruby
 #add guard-minitest and spring to dev
 
@@ -126,4 +126,4 @@ When fully deployed, this will be a nice feature to have for streamlining the wo
 ## Footnote
 This has been fun. Leave a comment or send me a DM on [Twitter](http://twitter.com/EclecticCoding).
 
-Shameless Plug: If you work at a great company and you are in the market for a Software Developer with a varied skill set and life experiences, send me a message on [Twitter](http://twitter.com/EclecticCoding) and check out my [LinkedIn](http://www.linkedin.com/in/dev-chuck-smith).
+Shameless Plug: If you work at a great company, and you are in the market for a Software Developer with a varied skill set and life experiences, send me a message on [Twitter](http://twitter.com/EclecticCoding) and check out my [LinkedIn](http://www.linkedin.com/in/dev-chuck-smith).
