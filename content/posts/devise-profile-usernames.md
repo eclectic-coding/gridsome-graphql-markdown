@@ -6,7 +6,7 @@ tags: ['rails']
 series: false 
 cover_image: ./images/users.jpg
 canonical_rul: false 
-description: 
+description: I have worked on several projects recently with user accounts using Devise, and I have been working at changing the way user profile URL's are set up and presented to the user. In this article I will address this task and use a few of my recent favorite gems.
 ---
 I have worked on several projects recently with user accounts using Devise, and I have been working at changing the way user profile URL's are set up and presented to the user. In this article I will address this task and use a few of my recent favorite gems. 
 
