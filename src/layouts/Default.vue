@@ -1,20 +1,14 @@
 <template>
   <div id="app">
 
-    <nav>
-      <div class="menu">
-        <button class="menu__links">Home</button>
-        <button class="menu__links">Articles</button>
-        <button class="menu__links">About Me</button>
-      </div>
-      <ToggleTheme />
-    </nav>
-
     <header class="header">
       <div class="header__left">
         <Logo v-if="showLogo" />
       </div>
 
+      <div class="header__right">
+        <ToggleTheme />
+      </div>
     </header>
 
     <main class="main">
