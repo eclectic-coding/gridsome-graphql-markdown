@@ -45,6 +45,14 @@ Books I have read and/or reading that I have found beneficial
 - **Metaprogramming Ruby** by Paola Perrotta
 - **Practical Object-Oriented Design** by Sandi Metz
 
+## Communities 
+
+Being in a community of developers has been vital to my personal growth:
+- [VirtualCoffee](https://virtualcoffee.io/) - Virtual Coffee is a laid-back conversation with developers twice a week. It's the conversation that keeps going in slack. It's the online events that support developers at all stages of the journey. It's the place you go to make friends.
+- [GoRails](https://gorails.com/) - a community of Rails developers, learning Ruby on Rails to build their ideas, products, and businesses.
+- Local and virtual Ruby Meetups
+- Rails and StimulusReflex Discord
+
 ## Workflow
 When I first graduated from Flatiron, in February 2020, I was pulled in
 a lot of directions, mostly influenced by the amount of job posting I was
